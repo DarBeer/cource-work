@@ -1,10 +1,11 @@
 const express = require('express');
-const callRoutes = express.Router();
-const Call = require('../../models/calls');
+const router = express.Router();
 const multer  = require('multer');
 
+const Call = require('../../models/calls');
+
 // GET all calls
-callRoutes.route('/').get((req, res) => {
+router.route('/').get((req, res) => {
     Call.find((err, call) => {
         if (err) {
             res.json(err);
@@ -15,7 +16,7 @@ callRoutes.route('/').get((req, res) => {
 });
 
 // GET call by id
-callRoutes.route('/:id').get((req, res) => {
+router.route('/:id').get((req, res) => {
     Call.findById({_id: req.params.id}, (err, call) => {
         if (err) {
             res.json(err);
@@ -26,7 +27,7 @@ callRoutes.route('/:id').get((req, res) => {
 });
 
 // ADD call data
-callRoutes.route('/add').post((req, res) => {
+router.route('/add').post((req, res) => {
     const newCall = new Call(req.body);
     newCall.save((err, call) => {
         if (err) {
@@ -39,7 +40,7 @@ callRoutes.route('/add').post((req, res) => {
 });
 
 // EDIT call
-callRoutes.route('/edit/:id').get((req, res) => {
+router.route('/edit/:id').get((req, res) => {
     let id = req.params.id;
     Call.findById(id, (err, call) => {
         res.json(call)
@@ -47,7 +48,7 @@ callRoutes.route('/edit/:id').get((req, res) => {
 });
 
 // UPDATE call
-callRoutes.route('/update/:id').post((req, res) => {
+router.route('/update/:id').post((req, res) => {
     Call.findById(req.params.id, (err, call) => {
         if (!call)
             return next(new Error(err));
@@ -69,7 +70,7 @@ callRoutes.route('/update/:id').post((req, res) => {
 });
 
 // DELETE call
-callRoutes.route('/delete/:id').get((req, res) => {
+router.route('/delete/:id').get((req, res) => {
     Call.findByIdAndRemove({_id: req.params.id}, (err, call) => {
         if (err) {
             res.json(err);
@@ -79,4 +80,4 @@ callRoutes.route('/delete/:id').get((req, res) => {
     );
 });
 
-module.exports = callRoutes;
+module.exports = router;
