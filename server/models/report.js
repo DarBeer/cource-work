@@ -15,4 +15,4 @@ const Report = new ReportSchema({
     collection: 'reports'
 });
 
-module.exports = mongoose.model('Report', ReportSchema);
+module.exports = mongoose.model('Report', Report);
