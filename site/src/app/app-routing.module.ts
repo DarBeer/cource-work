@@ -1,25 +1,18 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { WebComponent } from './web/web.component';
-import { HomeComponent } from './web/home/home.component';
-import { ReportComponent } from './web/report/report.component';
+import { ReportComponent } from './report/report.component';
 import { AdminComponent } from './admin/admin.component';
-import { AdminReportsComponent } from './admin/admin-reports/admin-reports.component';
-import { AdminCallsComponent } from './admin/admin-calls/admin-calls.component';
-import { NotFoundComponent } from './not-found/not-found.component';
+import { ReportsComponent } from './admin/reports/reports.component';
+import { CallsComponent } from './admin/calls/calls.component';
 
 
 const routes: Routes = [
-  { path: '', component: WebComponent, children: [
-    { path: '', component: HomeComponent },
-    { path: '/report', component: ReportComponent }
-  ]},
-  { path: '/admin', component: AdminComponent, children: [
-    { path: '/reports', component: AdminReportsComponent },
-    { path: '/calls', component: AdminCallsComponent }
-  ]},
-  { path: '/not-found', component: NotFoundComponent },
-  { path: '**', redirectTo: '/not-found', pathMatch: 'full' }
+  { path: 'report', component: ReportComponent },
+  { path: '', redirectTo: 'report', pathMatch: 'full' },
+  { path: 'admin', component: AdminComponent, children: [
+    { path: 'reports', component: ReportsComponent },
+    { path: 'calls', component: CallsComponent }
+  ]}
 ];
 
 @NgModule({

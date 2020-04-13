@@ -1,0 +1,134 @@
+<header class="h-100">
+  <mdb-navbar SideClass="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar intro-fixed-nav" [containerInside]="false">
+    <mdb-navbar-brand>
+      <a class="logo navbar-brand" routerLink="/">
+        <strong>Report Station</strong>
+      </a>
+    </mdb-navbar-brand>
+    <links>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active waves-light" mdbWavesEffect>
+          <a class="nav-link" routerLink="/">Home
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item waves-light" mdbWavesEffect>
+          <a class="nav-link" routerLink="/admin">Statictic</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav nav-flex-icons">
+        <li class="nav-item waves-light font-weight-bold" mdbWavesEffect>
+        </li>
+    </ul>
+    <div class="btn-group font-weight-bold text-white" mdbDropdown>
+      <a mdbDropdownToggle class="dropdown-toggle waves-light"
+        mdbWavesEffect>
+        ЗАКАЗАТЬ ЗВОНОК <mdb-icon fas icon="headset"></mdb-icon>
+      </a>
+    
+      <div class="dropdown-menu dropdown-primary">
+        <form class="row callForm" [formGroup]="callForm" (submit)="addCall()" novalidate>
+          <div class="col-md-6">
+            <label>Имя</label>
+            <input type="text" formControlName="firstname" #firstname />
+            <div *ngIf="callForm.controls['firstname'].invalid && (callForm.controls['firstname'].dirty || callForm.controls['firstname'].touched)" class="alert alert-danger">
+              <div *ngIf="callForm.controls['firstname'].errors.required">
+                  Необходимо заполнить имя!
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label>Фамилия</label>
+            <input type="text" formControlName="lastname" #lastname />
+            <div *ngIf="callForm.controls['lastname'].invalid && (callForm.controls['lastname'].dirty || callForm.controls['lastname'].touched)" class="alert alert-danger">
+              <div *ngIf="callForm.controls['lastname'].errors.required">
+                  Необходимо заполнить фамилию!
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label>Телефон</label>
+            <input type="text" formControlName="phone" #phone />
+            <div *ngIf="callForm.controls['phone'].invalid && (callForm.controls['phone'].dirty || callForm.controls['phone'].touched)" class="alert alert-danger">
+              <div *ngIf="callForm.controls['phone'].errors.required">
+                  Необходимо заполнить Телефон!
+              </div>
+            </div>
+            <button type="submit"  [disabled]="reportForm.pristine || reportForm.invalid" class="btn btn-primary">Бронировать</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    </links>
+  </mdb-navbar>
+    <!-- Main -->
+    <div class="view">
+      <div class="full-bg-img">
+        <div class="mask rgba-indigo-slight flex-center">
+          <div class="container">
+            <div class="text-center wow fadeInUp">
+              <form class="row z-depth-1-half reportForm" [formGroup]="reportForm" (submit)="addReport(header.value, desctiprion.value, firstname.value, lastname.value, email.value)" novalidate>
+                <div class="col-sm-12 title">
+                  <h3>Отправить отчет</h3>
+                </div>
+                <div class="scrollbar scrollbar-primary">
+                  <div class="contant">
+                    <div class="col-md-12">
+                      <label>Тема</label>
+                      <input type="text" formControlName="header" #header />
+                      <div *ngIf="reportForm.controls['header'].invalid && (reportForm.controls['header'].dirty || reportForm.controls['header'].touched)" class="alert alert-danger">
+                        <div *ngIf="reportForm.controls['header'].errors.required">
+                            Необходимо заполнить заголовок!
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <label>Описание</label>
+                      <textarea type="text" formControlName="desctiprion" #desctiprion ></textarea>
+                      <div *ngIf="reportForm.controls['desctiprion'].invalid && (reportForm.controls['desctiprion'].dirty || reportForm.controls['desctiprion'].touched)" class="alert alert-danger">
+                        <div *ngIf="reportForm.controls['desctiprion'].errors.required">
+                            Необходимо заполнить описание!
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <label>Имя</label>
+                      <input type="text" formControlName="firstname" #firstname />
+                      <div *ngIf="reportForm.controls['firstname'].invalid && (reportForm.controls['firstname'].dirty || reportForm.controls['firstname'].touched)" class="alert alert-danger">
+                        <div *ngIf="reportForm.controls['firstname'].errors.required">
+                            Необходимо заполнить имя!
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <label>Фамилия</label>
+                      <input type="text" formControlName="lastname" #lastname />
+                      <div *ngIf="reportForm.controls['lastname'].invalid && (reportForm.controls['lastname'].dirty || reportForm.controls['lastname'].touched)" class="alert alert-danger">
+                        <div *ngIf="reportForm.controls['lastname'].errors.required">
+                            Необходимо заполнить фамилию!
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <label>Электронная почта</label>
+                      <input type="email" formControlName="email" #email />
+                      <div *ngIf="reportForm.controls['email'].invalid && (reportForm.controls['email'].dirty || reportForm.controls['email'].touched)" class="alert alert-danger">
+                        <div *ngIf="reportForm.controls['email'].errors.required">
+                            Необходимо заполнить email!
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <button type="submit"  [disabled]="reportForm.pristine || reportForm.invalid" class="btn btn-primary">Добавить</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="footer"></div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.Main -->
+ </header>

@@ -1,38 +1,30 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { WebComponent } from './web/web.component';
-import { HeaderComponent } from './web/header/header.component';
-import { FooterComponent } from './web/footer/footer.component';
-import { HomeComponent } from './web/home/home.component';
-import { ReportComponent } from './web/report/report.component';
+import { ReportComponent } from './report/report.component';
 import { AdminComponent } from './admin/admin.component';
-import { LoginComponent } from './login/login.component';
-import { NotFoundComponent } from './not-found/not-found.component';
-import { AdminReportsComponent } from './admin/admin-reports/admin-reports.component';
-import { AdminCallsComponent } from './admin/admin-calls/admin-calls.component';
+import { ReportsComponent } from './admin/reports/reports.component';
+import { CallsComponent } from './admin/calls/calls.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
     AppComponent,
-    WebComponent,
-    HeaderComponent,
-    FooterComponent,
-    HomeComponent,
     ReportComponent,
     AdminComponent,
-    LoginComponent,
-    NotFoundComponent,
-    AdminReportsComponent,
-    AdminCallsComponent
+    ReportsComponent,
+    CallsComponent
   ],
   imports: [
     MDBBootstrapModule.forRoot(),
+    ToastrModule.forRoot(),
 
+    HttpClientModule,
+    ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule
   ],
