@@ -8,6 +8,7 @@
         "test": "mocha --require babel-register test/*.js --exit"
     },
     "dependencies": {
+        "kind-of": "^6.0.3",
         "body-parser": "^1.18.0",
         "chai": "^4.2.0",
         "cookie-parser": "^1.4.5",
